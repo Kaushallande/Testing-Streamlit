@@ -1,8 +1,5 @@
 import streamlit as st
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
-# Initialize the VADER sentiment analyzer
-analyzer = SentimentIntensityAnalyzer()
+from textblob import TextBlob
 
 # Streamlit app
 st.title("Sentiment Analysis of Reviews")
@@ -14,14 +11,14 @@ review = st.text_area("Enter your review:")
 if st.button("Analyze Sentiment"):
     if review:
         # Perform sentiment analysis
-        sentiment = analyzer.polarity_scores(review)
+        blob = TextBlob(review)
+        sentiment = blob.sentiment
         
         # Display the sentiment scores
         st.write("Sentiment Scores:")
-        st.write(f"Positive: {sentiment['pos']:.2f}")
-        st.write(f"Neutral: {sentiment['neu']:.2f}")
-        st.write(f"Negative: {sentiment['neg']:.2f}")
-        st.write(f"Overall Sentiment: {'Positive' if sentiment['compound'] >= 0.05 else 'Negative' if sentiment['compound'] <= -0.05 else 'Neutral'}")
+        st.write(f"Polarity: {sentiment.polarity:.2f} (range: -1 to 1, where -1 is negative and 1 is positive)")
+        st.write(f"Subjectivity: {sentiment.subjectivity:.2f} (range: 0 to 1, where 0 is objective and 1 is subjective)")
+        st.write(f"Overall Sentiment: {'Positive' if sentiment.polarity > 0 else 'Negative' if sentiment.polarity < 0 else 'Neutral'}")
     else:
         st.error("Please enter a review to analyze.")
 

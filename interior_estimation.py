@@ -1,11 +1,10 @@
 import streamlit as st
 
 # Sample cost data (in a real application, this might be loaded from a database)
-cost_data = {
-    "Living Room": {"Sofa": 500, "Coffee Table": 150, "TV Stand": 200},
-    "Bedroom": {"Bed": 700, "Wardrobe": 300, "Dresser": 250},
-    "Kitchen": {"Dining Table": 400, "Chairs": 100, "Cabinets": 600},
-    "Bathroom": {"Vanity": 300, "Shower": 500, "Toilet": 200}
+cost_data = {"Living Room": {"Sofa": 50000, "Coffee Table": 15000, "TV Stand": 20000},
+    "Bedroom": {"Bed": 20000, "Wardrobe": 30000, "Dresser": 25000},
+    "Kitchen": {"Dining Table": 4000, "Chairs": 1000, "Cabinets": 60000},
+    "Bathroom": {"Vanity": 3000, "Shower": 5000, "Toilet": 2000}
 }
 
 # Function to calculate the total cost
